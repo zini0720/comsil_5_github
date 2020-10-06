@@ -1,0 +1,18 @@
+# 에러처리
+if [ $# == 0 ]
+then
+ echo "Usage: phone searchfor[...searchfor]"
+ echo "(You didn't tell me what you want to search for.)"
+ exit 0
+
+else
+ #하나의 문자열로 만들기
+ str=$1
+ for arg in "$@"
+ do
+  str=$str\|$arg
+ done
+fi
+#egrep이용하기
+eval 'egrep "($str)" mydata | awk -f display.awk'
+exit 0
